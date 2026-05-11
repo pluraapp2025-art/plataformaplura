@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Trabalho · PLURA INOVA SIMPLES</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
 
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header>
+  <div>
+    <div class="header-eyebrow">Plano de Trabalho — Revisão 2</div>
+    <div class="header-title">PLURA <span>INOVA</span> SIMPLES</div>
+    <div class="header-meta">CNPJ 64.988.404/0001-18 &nbsp;·&nbsp; Maceió, AL</div>
+  </div>
+  <div style="display:flex; align-items:flex-start; gap:0.6rem;">
+    <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/escuro" aria-label="Alternar tema">
+      <!-- icon injected by JS -->
+    </button>
+    <div class="badge-edital">EDITAL SECTI-AL/FAPEAL Nº 02/2025</div>
+  </div>
+</header>
+
+<!-- ─── NAV ───────────────────────────────────────────── -->
+<nav class="nav-bar">
+  <a class="nav-item active" href="#">Home Page</a>
+  <a class="nav-item" href="#">Áreas e funcionalidades</a>
+  <a class="nav-item" href="#">Cronograma</a>
+  <a class="nav-item" href="#">Controle Financeiro</a>
+</nav>
+
+<!-- ─── STATS ─────────────────────────────────────────── -->
+<div class="stats-strip">
+  <div class="stat">
+    <div class="stat-value">12</div>
+    <div class="stat-label">Metas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">38</div>
+    <div class="stat-label">Atividades</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">5</div>
+    <div class="stat-label">Meses</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value" style="font-size:1.35rem; padding-top:0.2rem;">Abr–Ago</div>
+    <div class="stat-label">Período 2025</div>
+  </div>
+</div>
+
+<!-- ─── MAIN ──────────────────────────────────────────── -->
+<div class="main">
+
+  <!-- Filter chips -->
+  <div class="controls" id="filterBar">
+    <span class="controls-label">Filtrar:</span>
+    <button class="filter-btn active" data-meta="all">
+      <span class="dot" style="background:#4f7fff"></span>
+      Todas as metas
+    </button>
+  </div>
+
+  <!-- Gantt card -->
+  <div class="chart-card" id="ganttCard">
+    <div class="chart-header">
+      <span class="chart-title">Cronograma — Duração Prevista por Atividade</span>
+      <span style="font-size:11px; color:var(--text3)">Ordenado por meta · ordem alfabética</span>
+    </div>
+
+    <!-- axis header synced with bar track columns -->
+    <div style="display:grid; grid-template-columns: 220px 1fr; gap:0.75rem; padding: 0 1.5rem; border-bottom:1px solid var(--border);">
+      <div></div>
+      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:2px;">
+        <div class="axis-month">Abril</div>
+        <div class="axis-month">Maio</div>
+        <div class="axis-month">Junho</div>
+        <div class="axis-month">Julho</div>
+        <div class="axis-month">Agosto</div>
+      </div>
+    </div>
+
+    <div class="gantt-body" id="ganttBody"></div>
+
+    <div class="legend-grid" id="legendGrid"></div>
+  </div>
+
+</div>
+
+<!-- ─── FOOTER ──────────────────────────────────────────── -->
+<footer>
+  <span>PLURA INOVA SIMPLES (I.S.) · Plano de Trabalho Revisão 2</span>
+  <span>Edital SECTI-AL/FAPEAL Nº 02/2025</span>
+</footer>
+
+<!-- ─── TOOLTIP ──────────────────────────────────────────── -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-meta" id="tt-meta"></div>
+  <div class="tooltip-name" id="tt-name"></div>
+  <div class="tooltip-period">
+    <span class="tooltip-dot" id="tt-dot"></span>
+    <span id="tt-period"></span>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
