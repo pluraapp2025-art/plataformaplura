@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Trabalho · PLURA INOVA SIMPLES</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header>
+  <div>
+    <div class="header-eyebrow">Plano de Trabalho — Revisão 2</div>
+    <div class="header-title">PLURA <span>INOVA</span> SIMPLES</div>
+    <div class="header-meta">CNPJ 64.988.404/0001-18 &nbsp;·&nbsp; Maceió, AL</div>
+  </div>
+  <div style="display:flex; align-items:flex-start; gap:0.6rem;">
+    <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/escuro" aria-label="Alternar tema"></button>
+    <div class="badge-edital">EDITAL SECTI-AL/FAPEAL Nº 02/2025</div>
+  </div>
+</header>
+
+<!-- ─── NAV ───────────────────────────────────────────── -->
+<nav class="nav-bar">
+  <a class="nav-item" href="#" data-section="sobre">Sobre</a>
+  <a class="nav-item" href="#" data-section="cronograma">Cronograma</a>
+  <a class="nav-item" href="#" data-section="financeiro">Financeiro</a>
+  <a class="nav-item" href="#" data-section="funcionalidades">Funcionalidades</a>
+</nav>
+
+<!-- ─── SECTION: SOBRE ────────────────────────────────── -->
+<section id="section-sobre" class="page-section" hidden>
+  <div id="sobre-content"></div>
+</section>
+
+<!-- ─── SECTION: CRONOGRAMA ──────────────────────────── -->
+<section id="section-cronograma" class="page-section" hidden>
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Metas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">38</div>
+      <div class="stat-label">Atividades</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Meses</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" style="font-size:1.35rem; padding-top:0.2rem;">Abr–Ago</div>
+      <div class="stat-label">Período 2025</div>
+    </div>
+  </div>
+  <div class="main">
+    <div id="cronograma-content"></div>
+  </div>
+</section>
+
+<!-- ─── SECTION: FINANCEIRO ──────────────────────────── -->
+<section id="section-financeiro" class="page-section" hidden>
+  <div class="main">
+    <div id="financeiro-content"></div>
+  </div>
+</section>
+
+<!-- ─── SECTION: FUNCIONALIDADES ─────────────────────── -->
+<section id="section-funcionalidades" class="page-section" hidden>
+  <div class="main">
+    <div id="funcionalidades-content"></div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ──────────────────────────────────────────── -->
+<footer>
+  <span>PLURA INOVA SIMPLES (I.S.) · Plano de Trabalho Revisão 2</span>
+  <span>Edital SECTI-AL/FAPEAL Nº 02/2025</span>
+</footer>
+
+<!-- ─── TOOLTIP (cronograma) ──────────────────────────── -->
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-meta" id="tt-meta"></div>
+  <div class="tooltip-name" id="tt-name"></div>
+  <div class="tooltip-period">
+    <span class="tooltip-dot" id="tt-dot"></span>
+    <span id="tt-period"></span>
+  </div>
+</div>
+
+<script src="sobre.js"></script>
+<script src="cronograma.js"></script>
+<script src="financeiro.js"></script>
+<script src="funcionalidades.js"></script>
+
+<script>
+/* ─── TEMA ───────────────────────────────────────────── */
+const ICON_DARK  = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+const ICON_LIGHT = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+const themeBtn = document.getElementById('themeToggle');
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  themeBtn.innerHTML = theme === 'light' ? ICON_DARK : ICON_LIGHT;
+  themeBtn.title = theme === 'light' ? 'Modo escuro' : 'Modo claro';
+  localStorage.setItem('plura-theme', theme);
+}
+
+const savedTheme = localStorage.getItem('plura-theme') ||
+  (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+applyTheme(savedTheme);
+
+themeBtn.addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+});
+
+/* ─── NAVEGAÇÃO ENTRE SECTIONS ────────────────────────── */
+const sectionInits = {
+  sobre:          initSobre,
+  cronograma:     initCronograma,
+  financeiro:     initFinanceiro,
+  funcionalidades: initFuncionalidades,
+};
+const initialized = {};
+
+function showSection(name) {
+  document.querySelectorAll('.page-section').forEach(s => { s.hidden = true; });
+  document.getElementById('section-' + name).hidden = false;
+
+  document.querySelectorAll('.nav-item').forEach(a => a.classList.remove('active'));
+  document.querySelector(`.nav-item[data-section="${name}"]`).classList.add('active');
+
+  if (!initialized[name]) {
+    sectionInits[name]();
+    initialized[name] = true;
+  }
+}
+
+document.querySelectorAll('.nav-item[data-section]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    showSection(a.dataset.section);
+  });
+});
+
+showSection('sobre');
+</script>
+</body>
+</html>

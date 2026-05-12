@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plano de Trabalho · PLURA INOVA SIMPLES</title>
+<title>Login · PLURA INOVA SIMPLES</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 
@@ -18,77 +17,41 @@
     <div class="header-meta">CNPJ 64.988.404/0001-18 &nbsp;·&nbsp; Maceió, AL</div>
   </div>
   <div style="display:flex; align-items:flex-start; gap:0.6rem;">
-    <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/escuro" aria-label="Alternar tema">
-      <!-- icon injected by JS -->
-    </button>
+    <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/escuro" aria-label="Alternar tema"></button>
     <div class="badge-edital">EDITAL SECTI-AL/FAPEAL Nº 02/2025</div>
   </div>
 </header>
 
-<!-- ─── NAV ───────────────────────────────────────────── -->
-<nav class="nav-bar">
-  <a class="nav-item active" href="#">Home Page</a>
-  <a class="nav-item" href="#">Áreas e funcionalidades</a>
-  <a class="nav-item" href="#">Cronograma</a>
-  <a class="nav-item" href="#">Controle Financeiro</a>
-</nav>
+<!-- ─── LOGIN ──────────────────────────────────────────── -->
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-title">Acesso à Plataforma</div>
+    <div class="login-subtitle">Entre com suas credenciais para continuar</div>
 
-<!-- ─── STATS ─────────────────────────────────────────── -->
-<div class="stats-strip">
-  <div class="stat">
-    <div class="stat-value">12</div>
-    <div class="stat-label">Metas</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">38</div>
-    <div class="stat-label">Atividades</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value">5</div>
-    <div class="stat-label">Meses</div>
-  </div>
-  <div class="stat">
-    <div class="stat-value" style="font-size:1.35rem; padding-top:0.2rem;">Abr–Ago</div>
-    <div class="stat-label">Período 2025</div>
-  </div>
-</div>
-
-<!-- ─── MAIN ──────────────────────────────────────────── -->
-<div class="main">
-
-  <!-- Filter chips -->
-  <div class="controls" id="filterBar">
-    <span class="controls-label">Filtrar:</span>
-    <button class="filter-btn active" data-meta="all">
-      <span class="dot" style="background:#4f7fff"></span>
-      Todas as metas
-    </button>
-  </div>
-
-  <!-- Gantt card -->
-  <div class="chart-card" id="ganttCard">
-    <div class="chart-header">
-      <span class="chart-title">Cronograma — Duração Prevista por Atividade</span>
-      <span style="font-size:11px; color:var(--text3)">Ordenado por meta · ordem alfabética</span>
-    </div>
-
-    <!-- axis header synced with bar track columns -->
-    <div style="display:grid; grid-template-columns: 220px 1fr; gap:0.75rem; padding: 0 1.5rem; border-bottom:1px solid var(--border);">
-      <div></div>
-      <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:2px;">
-        <div class="axis-month">Abril</div>
-        <div class="axis-month">Maio</div>
-        <div class="axis-month">Junho</div>
-        <div class="axis-month">Julho</div>
-        <div class="axis-month">Agosto</div>
+    <form id="loginForm" class="login-form" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="email">E-mail</label>
+        <input class="form-input" type="email" id="email" placeholder="seu@email.com" autocomplete="email" required>
       </div>
-    </div>
 
-    <div class="gantt-body" id="ganttBody"></div>
+      <div class="form-group">
+        <label class="form-label" for="password">Senha</label>
+        <div class="input-wrapper">
+          <input class="form-input" type="password" id="password" placeholder="••••••••" autocomplete="current-password" required>
+          <button type="button" class="toggle-password" id="togglePassword" aria-label="Visualizar senha"></button>
+        </div>
+      </div>
 
-    <div class="legend-grid" id="legendGrid"></div>
+      <div class="error-msg" id="errorMsg"></div>
+
+      <button type="submit" class="btn-login">Entrar</button>
+
+      <div class="login-links">
+        <a href="#" class="login-link" id="recoverLink">Recuperar senha</a>
+        <a href="#" class="login-link" id="helpLink">Contatar ajuda</a>
+      </div>
+    </form>
   </div>
-
 </div>
 
 <!-- ─── FOOTER ──────────────────────────────────────────── -->
@@ -97,16 +60,6 @@
   <span>Edital SECTI-AL/FAPEAL Nº 02/2025</span>
 </footer>
 
-<!-- ─── TOOLTIP ──────────────────────────────────────────── -->
-<div class="tooltip" id="tooltip">
-  <div class="tooltip-meta" id="tt-meta"></div>
-  <div class="tooltip-name" id="tt-name"></div>
-  <div class="tooltip-period">
-    <span class="tooltip-dot" id="tt-dot"></span>
-    <span id="tt-period"></span>
-  </div>
-</div>
-
-<script src="script.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
