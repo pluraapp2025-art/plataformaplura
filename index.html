@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login · PLURA INOVA SIMPLES</title>
+<title>Plura | Painel Administrativo</title>
+<link rel="icon" href="plura.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,13 +13,13 @@
 <!-- ─── HEADER ─────────────────────────────────────────── -->
 <header>
   <div>
-    <div class="header-eyebrow">Plano de Trabalho — Revisão 2</div>
-    <div class="header-title">PLURA <span>INOVA</span> SIMPLES</div>
-    <div class="header-meta">CNPJ 64.988.404/0001-18 &nbsp;·&nbsp; Maceió, AL</div>
+    <div class="header-eyebrow">Plano de Trabalho e gerenciamento do projeto</div>
+    <div class="header-title">APP <span>PLURA</span> </div>
+    <!-- <div class="header-meta">subtítulo 01&nbsp;·&nbsp; subtítulo 02</div> -->
   </div>
   <div style="display:flex; align-items:flex-start; gap:0.6rem;">
     <button class="theme-toggle" id="themeToggle" title="Alternar modo claro/escuro" aria-label="Alternar tema"></button>
-    <div class="badge-edital">EDITAL SECTI-AL/FAPEAL Nº 02/2025</div>
+    
   </div>
 </header>
 
@@ -47,7 +48,7 @@
       <button type="submit" class="btn-login">Entrar</button>
 
       <div class="login-links">
-        <a href="#" class="login-link" id="recoverLink">Recuperar senha</a>
+        <!-- <a href="#" class="login-link" id="recoverLink">Recuperar senha</a> -->
         <a href="#" class="login-link" id="helpLink">Contatar ajuda</a>
       </div>
     </form>
@@ -56,10 +57,12 @@
 
 <!-- ─── FOOTER ──────────────────────────────────────────── -->
 <footer>
-  <span>PLURA INOVA SIMPLES (I.S.) · Plano de Trabalho Revisão 2</span>
-  <span>Edital SECTI-AL/FAPEAL Nº 02/2025</span>
+  <span>Plataforma de Gerenciamento de projeto</span>
+  <span>Criada por Master Educação LTDA.2026</span>
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="login.js"></script>
 </body>
 </html>
