@@ -35,8 +35,10 @@
 <!-- ─── NAV ───────────────────────────────────────────── -->
 <nav class="nav-bar">
   <a class="nav-item" href="#" data-section="sobre">Sobre</a>
-  <a class="nav-item" href="#" data-section="cronograma">Cronograma</a>
+  <a class="nav-item" href="#" data-section="cronograma">Cronograma do projeto</a>
+  <a class="nav-item" href="#" data-section="cronograma-atividades">Cronograma de Atividades</a>
   <a class="nav-item" href="#" data-section="financeiro">Financeiro</a>
+  <a class="nav-item" href="#" data-section="diario-atividades">Diário de Atividades</a>
   <a class="nav-item" href="#" data-section="funcionalidades">Funcionalidades</a>
 </nav>
 
@@ -70,10 +72,42 @@
   </div>
 </section>
 
+<!-- ─── SECTION: CRONOGRAMA DE ATIVIDADES ────────────── -->
+<section id="section-cronograma-atividades" class="page-section" hidden>
+  <div class="stats-strip">
+    <div class="stat">
+      <div class="stat-value">12</div>
+      <div class="stat-label">Metas</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">38</div>
+      <div class="stat-label">Atividades</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">5</div>
+      <div class="stat-label">Meses</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" style="font-size:1.35rem; padding-top:0.2rem;">Abr–Ago</div>
+      <div class="stat-label">Período 2025</div>
+    </div>
+  </div>
+  <div class="main">
+    <div id="cronograma-atividades-content"></div>
+  </div>
+</section>
+
 <!-- ─── SECTION: FINANCEIRO ──────────────────────────── -->
 <section id="section-financeiro" class="page-section" hidden>
   <div class="main">
     <div id="financeiro-content"></div>
+  </div>
+</section>
+
+<!-- ─── SECTION: DIÁRIO DE ATIVIDADES ────────────────── -->
+<section id="section-diario-atividades" class="page-section" hidden>
+  <div class="main">
+    <div id="diario-atividades-content"></div>
   </div>
 </section>
 
@@ -182,6 +216,8 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script src="sobre.js"></script>
 <script src="cronograma.js"></script>
+<script src="cronogramaAtividades.js"></script>
+<script src="diarioAtividades.js"></script>
 <script src="financeiro.js"></script>
 <script src="funcionalidades.js"></script>
 <script src="perfil.js"></script>
@@ -231,10 +267,12 @@ themeBtn.addEventListener('click', () => {
 
 /* ─── NAVEGAÇÃO ENTRE SECTIONS ────────────────────────── */
 const sectionInits = {
-  sobre:          initSobre,
-  cronograma:     initCronograma,
-  financeiro:     initFinanceiro,
-  funcionalidades: initFuncionalidades,
+  sobre:                    initSobre,
+  cronograma:               initCronograma,
+  'cronograma-atividades':  initCronogramaAtividades,
+  'diario-atividades':      initDiarioAtividades,
+  financeiro:               initFinanceiro,
+  funcionalidades:          initFuncionalidades,
 };
 const initialized = {};
 
